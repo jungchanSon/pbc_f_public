@@ -11,6 +11,12 @@ env:
   LIGHTSAIL_USERNAME: ec2-user
   AWS_REGION: ap-northeast-2
 
+  NEXT_PUBLIC_MEASUREMENT_ID: ${{secrets.NEXT_PUBLIC_MEASUREMENT_ID}}
+  NEXT_PUBLIC_ADSENSE_ACCOUNT: ${{secrets.NEXT_PUBLIC_ADSENSE_ACCOUNT}}
+  NEXT_PUBLIC_POBCODE_REQ_URL: ${{secrets.NEXT_PUBLIC_POBCODE_REQ_URL}}
+  NEXT_PUBLIC_DESTINATION: ${{secrets.NEXT_PUBLIC_DESTINATION}}
+  NEXT_PUBLIC_SOURCE: ${{secrets.NEXT_PUBLIC_SOURCE}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,6 +33,14 @@ jobs:
 
       - name: 프로젝트 디펜던시 설치
         run: yarn
+
+      - name: env 만들기
+        run: |
+          echo "NEXT_PUBLIC_MEASUREMENT_ID=$NEXT_PUBLIC_MEASUREMENT_ID" >> .env
+          echo "NEXT_PUBLIC_ADSENSE_ACCOUNT=$NEXT_PUBLIC_ADSENSE_ACCOUNT" >> .env
+          echo "NEXT_PUBLIC_POBCODE_REQ_URL=$NEXT_PUBLIC_POBCODE_REQ_URL" >> .env
+          echo "NEXT_PUBLIC_DESTINATION=$NEXT_PUBLIC_DESTINATION" >> .env
+          echo "NEXT_PUBLIC_SOURCE=$NEXT_PUBLIC_SOURCE" >> .env
 
       - name: 프로젝트 빌드하기
         run: yarn build

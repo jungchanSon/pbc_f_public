@@ -1,5 +1,7 @@
-const DESTINATION = "https://www.pathofexile.com/:path*"
-const SOURCE = "/poetrade/:path*"
+const process = require("next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss");
+
+const DESTINATION = process.env.NEXT_PUBLIC_DESTINATION
+const SOURCE = process.env.NEXT_PUBLIC_SOURCE
 
 const nextConfig = {
   reactStrictMode: false,
