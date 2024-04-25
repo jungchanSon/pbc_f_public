@@ -2,7 +2,8 @@ import BuildStore from "../../store/BuildStore";
 import axios from "axios";
 
 const handler = (item, onoffStatus, limitedDate) => {
-  const tradeUrl = "/poetrade/api/trade/search/Affliction"
+  const LEAGUE = "Necropolis"
+  const tradeUrl = "/poetrade/api/trade/search/"+LEAGUE
 
   const options = item.optionsById
   const optionValue = item.optionsByValue
