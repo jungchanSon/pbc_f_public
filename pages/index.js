@@ -33,7 +33,7 @@ export default function Home() {
                     <li>Search for items at approximately 10-second intervals. (If shorter, the Poe trading site may
                         impose a penalty.)
                     </li>
-                    <li>When reusing features, please refresh by pressing the "F5" button before use.</li>
+                    <li>When reusing features, please refresh by pressing the &quot;F5&quot; button before use.</li>
                     <li>Depending on the options, there may be no listings available, making it impossible to check the
                         market price.
                     </li>
