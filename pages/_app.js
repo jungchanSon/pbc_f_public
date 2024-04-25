@@ -20,10 +20,10 @@ function MyApp({ Component, pageProps }) {
                   }
               />
               <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-              <meta property="og:title" content={"Poe Builds Cost"} />
+              <meta property="og:title" content={"Poe Build Cost"} />
               <meta property="og:type" content="website" />
-              <meta property="og:url" content={"https://buildscost.com"} />
-              <meta property="og:article:author" content="BuildsCost" />
+              <meta property="og:url" content={"https://www.poebuildcost.com"} />
+              <meta property="og:article:author" content="PoeBuildCost" />
               <meta name="google-adsense-account" content={ADSENSE_ACCOUNT} />
               <script
                   async
