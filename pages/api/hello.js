@@ -187,8 +187,9 @@ const handler = (item, onoffStatus, limitedDate) => {
     //   }
     // })
     //
-    axios.post("/api/data", reqForm, {
-      headers: { "Content-Type": `application/json`}
+    // axios.post("/poetrade/api/trade/search/Necropolis", reqForm, {
+      axios.post("/api/data", reqForm, {
+      headers: { "Content-Type": `application/json` }
     }).then( r => {
       console.log(r)
       if (r.data.result.length > 0 ) {
@@ -196,12 +197,21 @@ const handler = (item, onoffStatus, limitedDate) => {
             resultLine = r.data.result[0]
             let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
             axios.get(url2).then(r => {
-
               amount = r.data.result[0].listing.price.amount
               currency = r.data.result[0].listing.price.currency
             })
           }
     })
+    // fetch('/api/data', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(reqForm ),
+    // })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     .catch(error => console.error('Error:', error));
 
     setTimeout(() => {
       resolve({amount, currency})
