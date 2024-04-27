@@ -170,7 +170,7 @@ const handler = (item, onoffStatus, limitedDate) => {
     //   }
     // })
 
-    axios.post("http://localhost:3000/api/data", reqForm, {
+    axios.post("https://poebuildcost.com/api/data", reqForm, {
       headers: { "Content-Type": `application/json`}
     }).then( r => {
       if (r.data.result.length > 0 ) {
