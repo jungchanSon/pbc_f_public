@@ -14,6 +14,7 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json',
             'X-Forwarded-For': userIp,
             'X-Client-IP': userIp,
+            'X-User-IP': userIp,
         },
         body: JSON.stringify(req.body),
     });
