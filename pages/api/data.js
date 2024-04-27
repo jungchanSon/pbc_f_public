@@ -2,9 +2,9 @@
 // import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+    console.log("[request] request to poe trade.")
 
     const userIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(userIp)
     const apiUrl = 'https://www.pathofexile.com/api/trade/search/Necropolis';
 
     const apiResponse = await fetch(apiUrl, {
