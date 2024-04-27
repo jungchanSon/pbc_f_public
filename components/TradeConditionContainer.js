@@ -53,7 +53,7 @@ const TradeConditionContainer = ({ option }) => {
                 break
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             } else {
                 await setCostOfHelmet({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -66,7 +66,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfBody({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfBody({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfBody({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -79,7 +79,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfBelt({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfBelt({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfBelt({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -92,7 +92,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfGlove({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfGlove({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfGlove({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -105,7 +105,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfBoots({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfBoots({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfBoots({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -118,7 +118,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfWeapon({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfWeapon({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfWeapon({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -131,7 +131,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfRing({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfRing({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfRing({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -144,7 +144,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             } else {
                 await setCostOfAmulet({uid: item.uniqueId, cost: null, unit: null})
             }
@@ -158,7 +158,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfJewels({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfJewels({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }
             await setProgress(progress + 1/MAX_PROGRESS*100)
             await setProgressLabel(progress+"%")
@@ -169,7 +169,7 @@ const TradeConditionContainer = ({ option }) => {
 
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfFlasks({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfFlasks({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
             }else {
                 await setCostOfFlasks({uid: item.uniqueId, cost: null, unit: null})
             }

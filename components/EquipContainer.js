@@ -74,7 +74,7 @@ const   EquipContainer = () => {
         for (const item of Helmet) {
             let res = await handler(item, OnOffCondition, DateCondition)
             if(res != "no data") {
-                await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency})
+                await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency, })
                 await manageTotalCost(res.amount, res.currency)
             }
             await setProgress(progress + 1/MAX_PROGRESS*100)

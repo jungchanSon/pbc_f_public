@@ -191,7 +191,7 @@ const handler = (item, onoffStatus, limitedDate) => {
       axios.post("/api/data", reqForm, {
       headers: { "Content-Type": `application/json` }
     }).then( r => {
-      console.log(r)
+      resultId = r.data.id
       if (r.data.result.length > 0 ) {
             resultId = r.data.id
             resultLine = r.data.result[0]
@@ -214,8 +214,8 @@ const handler = (item, onoffStatus, limitedDate) => {
     //     .catch(error => console.error('Error:', error));
 
     setTimeout(() => {
-      resolve({amount, currency})
-    }, 1000 * 10)
+      resolve({amount, currency, resultId})
+    }, 1000 * 5)
   })
 }
 

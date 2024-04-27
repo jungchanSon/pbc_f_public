@@ -2,6 +2,7 @@ import BuildStore from "../../store/BuildStore";
 import {Badge, Card, Row, Stack} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {setRarity} from "./common";
+import Link from "next/link";
 
 const HelmetCard = () => {
 
@@ -37,6 +38,13 @@ const HelmetCard = () => {
                         }
                         <Card.Body>
                             <Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>
+                            {item.hasOwnProperty("rid")?
+                                <Badge bg="secondary">
+                                    <Link href={"https://poe.game.daum.net/trade/search/Necropolis/"+item.rid} target={"_blank"}>
+                                        trade
+                                    </Link>
+                                </Badge>
+                                :null}
                         </Card.Body>
                         <hr/>
                         {/*optinos*/}
