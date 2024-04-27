@@ -170,7 +170,7 @@ const handler = (item, onoffStatus, limitedDate) => {
     //   }
     // })
 
-    axios.post("https://poebuildcost.com/api/data", reqForm, {
+    axios.post("/poetrade/api/trade/search/Necropolis", reqForm, {
       headers: { "Content-Type": `application/json`}
     }).then( r => {
       if (r.data.result.length > 0 ) {
@@ -184,6 +184,13 @@ const handler = (item, onoffStatus, limitedDate) => {
         })
       }
     })
+
+    axios.post("https://poebuildcost.com/calc/data", reqForm, {
+      headers: { "Content-Type": `application/json`}
+    }).then( r => {
+      console.log(r)
+    })
+
     setTimeout(() => {
       resolve({amount, currency})
     }, 1000 * 10)
