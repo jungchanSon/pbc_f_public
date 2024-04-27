@@ -148,29 +148,29 @@ const handler = (item, onoffStatus, limitedDate) => {
     let currency
 
 
-    fetch("/poetrade/api/trade/search/Necropolis", {
-      method: 'POST',
-      body: JSON.stringify(reqForm),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }).then((Response) => {
-      console.log('reponse');
-      console.log(Response)
-      if (Response.ok) {
-        Response.json().then(r => {
-          if (r.result.length > 0) {
-            resultId = r.id
-            resultLine = r.result[0]
-            let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
-            axios.get(url2).then(result => {
-              amount = result.data.result[0].listing.price.amount
-              currency = result.data.result[0].listing.price.currency
-            })
-          }
-        })
-      }
-    })
+    // fetch("https://www.pathofexile.com/api/trade/search/Necropolis", {
+    //   method: 'POST',
+    //   body: JSON.stringify(reqForm),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    // }).then((Response) => {
+    //   console.log('reponse');
+    //   console.log(Response)
+    //   if (Response.ok) {
+    //     Response.json().then(r => {
+    //       if (r.result.length > 0) {
+    //         resultId = r.id
+    //         resultLine = r.result[0]
+    //         let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
+    //         axios.get(url2).then(result => {
+    //           amount = result.data.result[0].listing.price.amount
+    //           currency = result.data.result[0].listing.price.currency
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
 
     // axios.post("/petrade/api/trade/search/Necropolis", reqForm, {
     //   headers: { "Content-Type": `application/json`}
@@ -203,32 +203,32 @@ const handler = (item, onoffStatus, limitedDate) => {
     //       }
     // })
 
-    // fetch('/api/data', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(reqForm ),
-    // })
-    //     .then((Response) => {
-    //       console.log('reponse');
-    //       console.log(Response)
-    //       if (Response.ok) {
-    //         Response.json().then(r => {
-    //           if (r.result.length > 0) {
-    //             resultId = r.id
-    //             resultLine = r.result[0]
-    //             let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
-    //             axios.get(url2).then(result => {
-    //               amount = result.data.result[0].listing.price.amount
-    //               currency = result.data.result[0].listing.price.currency
-    //             })
-    //           }
-    //         })
-    //       }
-    //     })
-    //     .then(data => console.log(data))
-    //     .catch(error => console.error('Error:', error));
+    fetch('/api/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(reqForm ),
+    })
+        .then((Response) => {
+          console.log('reponse');
+          console.log(Response)
+          if (Response.ok) {
+            Response.json().then(r => {
+              if (r.result.length > 0) {
+                resultId = r.id
+                resultLine = r.result[0]
+                let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
+                axios.get(url2).then(result => {
+                  amount = result.data.result[0].listing.price.amount
+                  currency = result.data.result[0].listing.price.currency
+                })
+              }
+            })
+          }
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
 
     setTimeout(() => {
       resolve({amount, currency, resultId})
