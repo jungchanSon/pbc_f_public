@@ -148,48 +148,50 @@ const handler = (item, onoffStatus, limitedDate) => {
     let currency
 
 
-    // fetch("/api/data", {
-    //   method: 'POST',
-    //   body: JSON.stringify(reqForm),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    // }).then((Response) => {
-    //   if (Response.ok) {
-    //     Response.json().then(r => {
-    //       if (r.result.length > 0) {
-    //         resultId = r.id
-    //         resultLine = r.result[0]
-    //         let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
-    //         axios.get(url2).then(result => {
-    //           amount = result.data.result[0].listing.price.amount
-    //           currency = result.data.result[0].listing.price.currency
-    //         })
-    //       }
-    //     })
-    //   }
-    // })
-
-    axios.post("/poetrade/api/trade/search/Necropolis", reqForm, {
-      headers: { "Content-Type": `application/json`}
-    }).then( r => {
-      if (r.data.result.length > 0 ) {
-        resultId = r.data.id
-        resultLine = r.data.result[0]
-        let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
-        axios.get(url2).then(r => {
-
-          amount = r.data.result[0].listing.price.amount
-          currency = r.data.result[0].listing.price.currency
+    fetch("/poetrade/api/trade/search/Necropolis", {
+      method: 'POST',
+      body: JSON.stringify(reqForm),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then((Response) => {
+      console.log('reponse');
+      console.log(Response)
+      if (Response.ok) {
+        Response.json().then(r => {
+          if (r.result.length > 0) {
+            resultId = r.id
+            resultLine = r.result[0]
+            let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
+            axios.get(url2).then(result => {
+              amount = result.data.result[0].listing.price.amount
+              currency = result.data.result[0].listing.price.currency
+            })
+          }
         })
       }
     })
 
-    axios.post("https://poebuildcost.com/calc/data", reqForm, {
-      headers: { "Content-Type": `application/json`}
-    }).then( r => {
-      console.log(r)
-    })
+    // axios.post("/poetrade/api/trade/search/Necropolis", reqForm, {
+    //   headers: { "Content-Type": `application/json`}
+    // }).then( r => {
+    //   if (r.data.result.length > 0 ) {
+    //     resultId = r.data.id
+    //     resultLine = r.data.result[0]
+    //     let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
+    //     axios.get(url2).then(r => {
+    //
+    //       amount = r.data.result[0].listing.price.amount
+    //       currency = r.data.result[0].listing.price.currency
+    //     })
+    //   }
+    // })
+    //
+    // axios.post("https://poebuildcost.com/calc/data", reqForm, {
+    //   headers: { "Content-Type": `application/json`}
+    // }).then( r => {
+    //   console.log(r)
+    // })
 
     setTimeout(() => {
       resolve({amount, currency})
