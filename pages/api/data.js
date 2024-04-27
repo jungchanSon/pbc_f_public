@@ -3,10 +3,10 @@
 
 export default async function handler(req, res) {
 
-    const userIp = req.headers['X-Real-IP'] || req.connection.remoteAddress;
+    const userIp = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
     const apiUrl = 'https://www.pathofexile.com/api/trade/search/Necropolis';
 
-    console.log("[request] request to poe trade.", userIp,req.headers['X-Forwarded-For'])
+    console.log("[request] request to poe trade.", userIp,req.headers['X-Forwarded-For'],req.connection.remoteAddress)
 
     const apiResponse = await fetch(apiUrl, {
         method: 'POST',
@@ -17,7 +17,6 @@ export default async function handler(req, res) {
         body: JSON.stringify(req.body),
     });
     if (!apiResponse.ok) {
-        console.log(apiResponse)
         return res.status(apiResponse.status).json({ error: 'Failed to fetch data from the external API' });
     }
 
