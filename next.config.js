@@ -1,5 +1,3 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
-
 const DESTINATION = "https://www.pathofexile.com/:path*"
 const SOURCE = "/poetrade/:path*"
 
