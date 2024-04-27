@@ -7,6 +7,8 @@ export default async function handler(req, res) {
     const apiUrl = 'https://www.pathofexile.com/api/trade/search/Necropolis';
 
     console.log("[req] ", userIp)
+    console.log(req.headers['x-real-ip'])
+    console.log(req.headers['X-Real-IP'])
 
     const apiResponse = await fetch(apiUrl, {
         method: 'POST',
