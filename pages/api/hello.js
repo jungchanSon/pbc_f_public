@@ -147,7 +147,30 @@ const handler = (item, onoffStatus, limitedDate) => {
     let amount
     let currency
 
-    axios.post(tradeUrl, reqForm, {
+
+    // fetch("/api/data", {
+    //   method: 'POST',
+    //   body: JSON.stringify(reqForm),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    // }).then((Response) => {
+    //   if (Response.ok) {
+    //     Response.json().then(r => {
+    //       if (r.result.length > 0) {
+    //         resultId = r.id
+    //         resultLine = r.result[0]
+    //         let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
+    //         axios.get(url2).then(result => {
+    //           amount = result.data.result[0].listing.price.amount
+    //           currency = result.data.result[0].listing.price.currency
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
+
+    axios.post("http://localhost:3000/api/data", reqForm, {
       headers: { "Content-Type": `application/json`}
     }).then( r => {
       if (r.data.result.length > 0 ) {

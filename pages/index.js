@@ -14,7 +14,7 @@ export default function Home() {
             <Head>
                 <meta name="google-adsense-account" content="ca-pub-7467904148363413"/>
             </Head>
-            <h1> Welcome To Builds Cost!!</h1>
+            <h1> Welcome To Poe Build Cost!</h1>
             <br/>
             <h2>
                 This Web Service helps you calculate POE(Path of Exile) build&rsquo;s cost. <br/>
