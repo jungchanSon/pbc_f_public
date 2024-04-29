@@ -31,6 +31,7 @@ export default async function handler(req, res) {
     }
     try {
         const response = await axios.post('https://www.pathofexile.com/api/trade/search/Necropolis', req.body, {
+            headers: { "Content-Type": `application/json`},
             proxy: proxyConfig
         });
 
