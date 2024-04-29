@@ -7,8 +7,7 @@ export default async function handler(req, res) {
     const PPORT = process.env.NEXT_PUBLIC_PPORT;
     const PUSERNAME = process.env.NEXT_PUBLIC_PUSERNAME;
     const PPASSWORD = process.env.NEXT_PUBLIC_PPASSWORD;
-    console.log("req.body", req.body)
-    console.log("type", typeof req.body)
+
     const proxyConfig = {
         host: PHOST,
         port: PPORT,
@@ -29,6 +28,7 @@ export default async function handler(req, res) {
             "price": "asc"
         }
     }
+    console.log("[req] to poe trade")
     try {
         const response = await axios.post('https://www.pathofexile.com/api/trade/search/Necropolis', req.body, {
             headers: { "Content-Type": `application/json`},
