@@ -203,7 +203,8 @@ const handler = (item, onoffStatus, limitedDate) => {
     //       }
     // })
 
-    fetch('/api/data', {
+
+    fetch('/api/proxy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -232,7 +233,7 @@ const handler = (item, onoffStatus, limitedDate) => {
 
     setTimeout(() => {
       resolve({amount, currency, resultId})
-    }, 1000 * 5)
+    }, 1000 * 3)
   })
 }
 

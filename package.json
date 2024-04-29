@@ -12,12 +12,15 @@
     "bootstrap": "^5.3.2",
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^3.0.0",
+    "https-proxy-agent": "^7.0.4",
+    "net": "^1.0.2",
     "next": "14.1.0",
     "next-http-proxy-middleware": "^1.2.6",
     "node-fetch": "^3.3.2",
     "react": "18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "18.2.0",
+    "tls": "^0.0.1",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
