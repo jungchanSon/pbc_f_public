@@ -35,9 +35,9 @@ export default async function handler(req, res) {
             // proxy: proxyConfig
         }).then( r => {
             console.log(r)
-            res.status(200).json(response.data);
+            res.status(200).json(r.data);
         }).catch( e => {
-            res.status(500).json({ message: 'Internal Server Error', error: error.message });
+            res.status(500).json({ message: 'Internal Server Error', error: e.message });
         })
 
     } catch (error) {
