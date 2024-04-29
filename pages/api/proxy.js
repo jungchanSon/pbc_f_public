@@ -28,15 +28,20 @@ export default async function handler(req, res) {
             "price": "asc"
         }
     }
-    console.log("[req] to poe trade")
+    console.log("[req] to poe trade", req.body)
     try {
-        const response = await axios.post('https://www.pathofexile.com/api/trade/search/Necropolis', req.body, {
+        axios.post('https://www.pathofexile.com/api/trade/search/Necropolis', reqForm, {
             headers: { "Content-Type": `application/json`},
-            proxy: proxyConfig
-        });
+            // proxy: proxyConfig
+        }).then( r => {
+            console.log(r)
+            res.status(200).json(response.data);
+        }).catch( e => {
+            res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        })
 
-        res.status(200).json(response.data);
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        console.log(error.message. error.body)
     }
 }
