@@ -16,7 +16,7 @@ env:
   NEXT_PUBLIC_POBCODE_REQ_URL: ${{secrets.NEXT_PUBLIC_POBCODE_REQ_URL}}
   NEXT_PUBLIC_DESTINATION: ${{secrets.NEXT_PUBLIC_DESTINATION}}
   NEXT_PUBLIC_SOURCE: ${{secrets.NEXT_PUBLIC_SOURCE}}
-
+  NEXT_PUBLIC_TRADESEARCH: ${{secrets.NEXT_PUBLIC_TRADESEARCH}}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,10 +41,8 @@ jobs:
           echo "NEXT_PUBLIC_POBCODE_REQ_URL=$NEXT_PUBLIC_POBCODE_REQ_URL" >> .env
           echo "NEXT_PUBLIC_DESTINATION=$NEXT_PUBLIC_DESTINATION" >> .env
           echo "NEXT_PUBLIC_SOURCE=$NEXT_PUBLIC_SOURCE" >> .env
-          echo "NEXT_PUBLIC_PHOST=$NEXT_PUBLIC_PHOST" >> .env
-          echo "NEXT_PUBLIC_PPORT=$NEXT_PUBLIC_PPORT" >> .env
-          echo "NEXT_PUBLIC_PUSERNAME=$NEXT_PUBLIC_PUSERNAME" >> .env
-          echo "NEXT_PUBLIC_PPASSWORD=$NEXT_PUBLIC_PPASSWORD" >> .env
+          echo "NEXT_PUBLIC_TRADESEARCH=$NEXT_PUBLIC_TRADESEARCH" >> .env
+
 
       - name: 프로젝트 빌드하기
         run: yarn build

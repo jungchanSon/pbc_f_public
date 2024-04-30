@@ -1,12 +1,17 @@
 import BuildStore from "../../store/BuildStore";
-import {Badge, Card, Row, Stack} from "react-bootstrap";
+import {Badge, Button, Card, Row, Stack} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {setRarity} from "./common";
 import Link from "next/link";
+import handler from "../../pages/api/hello";
+import TradeConditionStore from "../../store/TradeConditionStore";
 
 const HelmetCard = () => {
 
     const {Helmet, clickHelmetOpt, setHelmet} = BuildStore();
+    const {OnOffCondition, DateCondition, } = TradeConditionStore()
+    const {setOnOffCondition, setDateCondition} = TradeConditionStore()
+    const { setCostOfHelmet } = BuildStore()
 
     const clickOpt = (itemKey, optionKey) => {
         let temp = Helmet[itemKey].selectedOpts
@@ -18,6 +23,15 @@ const HelmetCard = () => {
     const clickOpt2 = (itemKey) => {
         Helmet[itemKey].checkAllRes = !Helmet[itemKey].checkAllRes
         setHelmet(Helmet)
+    }
+    const searchOneItem = async (item) => {
+        let res = await handler(item, OnOffCondition, DateCondition)
+        if(res != "no data") {
+            await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        } else {
+            await setCostOfHelmet({uid: item.uniqueId, cost: null, unit: null})
+        }
+
     }
     if(Helmet)
     return (
@@ -36,15 +50,22 @@ const HelmetCard = () => {
                                 :
                                 null
                         }
+
                         <Card.Body>
                             <Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>
+
                             {item.hasOwnProperty("rid")?
                                 <Badge bg="secondary">
-                                    <Link href={"https://poe.game.daum.net/trade/search/Necropolis/"+item.rid} target={"_blank"}>
+                                    <Link href={"https://www.pathofexile.com/trade/search/Necropolis/"+item.rid} target={"_blank"}>
                                         trade
                                     </Link>
                                 </Badge>
                                 :null}
+                        </Card.Body>
+
+
+                        <Card.Body>
+                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>개별 검색</Button>
                         </Card.Body>
                         <hr/>
                         {/*optinos*/}
@@ -86,9 +107,13 @@ const HelmetCard = () => {
                         }
                         <hr/>
                         {/*cost*/}
-                        {item.cost | item.unit ?
+                        {item.cost && item.cost.length > 0 ?
                             <Card.Body>
-                                Cost: {item.cost} {item.unit}
+                                {item.cost.map( (i, key) => (
+                                    <div key={key}>
+                                        cost {key+1} = {i} {item.unit[key]}
+                                    </div>
+                                ))}
                             </Card.Body>
                         :
                             null

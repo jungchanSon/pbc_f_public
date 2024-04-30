@@ -1,10 +1,11 @@
 import BuildStore from "../../store/BuildStore";
 import axios from "axios";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const handler = (item, onoffStatus, limitedDate) => {
   const LEAGUE = "Necropolis"
   const tradeUrl = "/poetrade/api/trade/search/"+LEAGUE
-
+  const TRADESEARCH = process.env.NEXT_PUBLIC_TRADESEARCH
   const options = item.optionsById
   const optionValue = item.optionsByValue
   const checkedOptions = item.selectedOpts
@@ -18,6 +19,7 @@ const handler = (item, onoffStatus, limitedDate) => {
   let resultLine = "";
   const status = onoffStatus
   let reqItemType
+
   switch (itemType) {
     case 'Helmet':
       reqItemType = "armour.helmet"
@@ -148,92 +150,28 @@ const handler = (item, onoffStatus, limitedDate) => {
     let currency
 
 
-    // fetch("https://www.pathofexile.com/api/trade/search/Necropolis", {
-    //   method: 'POST',
-    //   body: JSON.stringify(reqForm),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    // }).then((Response) => {
-    //   console.log('reponse');
-    //   console.log(Response)
-    //   if (Response.ok) {
-    //     Response.json().then(r => {
-    //       if (r.result.length > 0) {
-    //         resultId = r.id
-    //         resultLine = r.result[0]
-    //         let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
-    //         axios.get(url2).then(result => {
-    //           amount = result.data.result[0].listing.price.amount
-    //           currency = result.data.result[0].listing.price.currency
-    //         })
-    //       }
-    //     })
-    //   }
-    // })
-
-    // axios.post("/petrade/api/trade/search/Necropolis", reqForm, {
-    //   headers: { "Content-Type": `application/json`}
-    // }).then( r => {
-    //   if (r.data.result.length > 0 ) {
-    //     resultId = r.data.id
-    //     resultLine = r.data.result[0]
-    //     let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
-    //     axios.get(url2).then(r => {
-    //
-    //       amount = r.data.result[0].listing.price.amount
-    //       currency = r.data.result[0].listing.price.currency
-    //     })
-    //   }
-    // })
-    //
-    // axios.post("/poetrade/api/trade/search/Necropolis", reqForm, {
-    //   axios.post("/api/data", reqForm, {
-    //   headers: { "Content-Type": `application/json` }
-    // }).then( r => {
-    //   resultId = r.data.id
-    //   if (r.data.result.length > 0 ) {
-    //         resultId = r.data.id
-    //         resultLine = r.data.result[0]
-    //         let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
-    //         axios.get(url2).then(r => {
-    //           amount = r.data.result[0].listing.price.amount
-    //           currency = r.data.result[0].listing.price.currency
-    //         })
-    //       }
-    // })
-
-
-    fetch('/api/proxy', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(reqForm ),
+    axios.post(TRADESEARCH, reqForm, {
+      headers: { "Content-Type": `application/json` }
+    }).then( r => {
+      console.log(r)
+      resultId = r.data.id
+      if (r.data.total > 0 ) {
+        amount = []
+        currency = []
+        for(let i=0; i<3 && i<r.data.total; i++ ) {
+          resultLine = r.data.result[i]
+          let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
+          axios.get(url2).then(r => {
+            amount.push(r.data.result[0].listing.price.amount)
+            currency.push(r.data.result[0].listing.price.currency)
+            console.log(amount, currency)
+          })}
+        }
     })
-        .then((Response) => {
-          console.log('reponse');
-          console.log(Response)
-          if (Response.ok) {
-            Response.json().then(r => {
-              if (r.result.length > 0) {
-                resultId = r.id
-                resultLine = r.result[0]
-                let url2 = "/poetrade/api/trade/fetch/" + resultLine + "?query=" + resultId
-                axios.get(url2).then(result => {
-                  amount = result.data.result[0].listing.price.amount
-                  currency = result.data.result[0].listing.price.currency
-                })
-              }
-            })
-          }
-        })
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
 
     setTimeout(() => {
       resolve({amount, currency, resultId})
-    }, 1000 * 3)
+    }, 1000 * 7)
   })
 }
 

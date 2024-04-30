@@ -1,12 +1,16 @@
 import BuildStore from "../../store/BuildStore";
-import {Badge, Card, Row, Stack} from "react-bootstrap";
+import {Badge, Button, Card, Row, Stack} from "react-bootstrap";
 import {setRarity} from "./common";
 import Link from "next/link";
+import TradeConditionStore from "../../store/TradeConditionStore";
+import handler from "../../pages/api/hello";
 
 const BootsCard = () => {
 
     const {Boots, clickBootsOpt, setBoots} = BuildStore();
-
+    const {OnOffCondition, DateCondition, } = TradeConditionStore()
+    const {setOnOffCondition, setDateCondition} = TradeConditionStore()
+    const {setCostOfBoots } = BuildStore()
     const clickOpt = (itemKey, optionKey) => {
         let temp = Boots[itemKey].selectedOpts
         temp[optionKey] *= -1
@@ -17,6 +21,14 @@ const BootsCard = () => {
     const clickOpt2 = (itemKey) => {
         Boots[itemKey].checkAllRes = !Boots[itemKey].checkAllRes
         setBoots(Boots)
+    }
+    const searchOneItem = async (item) => {
+        let res = await handler(item, OnOffCondition, DateCondition)
+        if(res != "no data") {
+            await setCostOfBoots({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        } else {
+            await setCostOfBoots({uid: item.uniqueId, cost: null, unit: null})
+        }
     }
     if(Boots)
     return (
@@ -36,14 +48,18 @@ const BootsCard = () => {
                                 null
                         }
                         <Card.Body>
-                            <Card.Title className={setRarity(item.rarity)}>{item.name}</Card.Title>
+                            <Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>
+
                             {item.hasOwnProperty("rid")?
                                 <Badge bg="secondary">
-                                    <Link href={"https://poe.game.daum.net/trade/search/Necropolis/"+item.rid} target={"_blank"}>
+                                    <Link href={"https://www.pathofexile.com/trade/search/Necropolis/"+item.rid} target={"_blank"}>
                                         trade
                                     </Link>
                                 </Badge>
                                 :null}
+                        </Card.Body>
+                        <Card.Body>
+                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>개별 검색</Button>
                         </Card.Body>
                         <hr/>
                         {/*optinos*/}
@@ -86,9 +102,13 @@ const BootsCard = () => {
                         }
                         <hr/>
                         {/*cost*/}
-                        {item.cost | item.unit ?
+                        {item.cost && item.cost.length > 0 ?
                             <Card.Body>
-                                Cost: {item.cost} {item.unit}
+                                {item.cost.map( (i, key) => (
+                                    <div key={key}>
+                                        cost {key+1} = {i} {item.unit[key]}
+                                    </div>
+                                ))}
                             </Card.Body>
                             :
                             null

@@ -50,40 +50,40 @@ const BuildStore = create((set) => ({
             item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
         ))] })),
     setCostOfWeapon : (prop) => set((state) => ({Weapon : [...state.Weapon.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfSubWeapon : (prop) => set((state) => ({Weapon : [...state.Weapon.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfHelmet : (prop) => set((state) => ({Helmet : [...state.Helmet.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfBody : (prop) => set((state) => ({Body : [...state.Body.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfBelt : (prop) => set((state) => ({Belt : [...state.Belt.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfGlove : (prop) => set((state) => ({Glove : [...state.Glove.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfBoots : (prop) => set((state) => ({Boots : [...state.Boots.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfAmulet : (prop) => set((state) => ({Amulet : [...state.Amulet.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfRing : (prop) => set((state) => ({Ring : [...state.Ring.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfRing2 : (prop) => set((state) => ({Ring : [...state.Ring.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfJewels : (prop) => set((state) => ({Jewels : [...state.Jewels.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
     setCostOfFlasks : (prop) => set((state) => ({Flasks : [...state.Flasks.map((item) => (
-            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, temp:prop} : item
+            item.uniqueId === prop.uid ? {...item, cost: prop.cost, unit: prop.unit, rid: prop.rid, temp:prop} : item
         ))] })),
 
     setCostUnitOfBuild: (prop) => set((state) => ({Build: [...state.Build, prop] })),
