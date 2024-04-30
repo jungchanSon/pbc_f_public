@@ -5,6 +5,7 @@ import Head from "next/head";
 import '../styles/globals.css'
 import Script from 'next/script'
 import process  from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import FooterContainer from "../components/Footer/FooterContainer";
 
 function MyApp({ Component, pageProps }) {
     const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
@@ -47,6 +48,7 @@ function MyApp({ Component, pageProps }) {
           <HeaderContainer />
           <hr style={{margin:"0"}}/>
           <Component {...pageProps} className={styles.root}/>
+          <FooterContainer/>
       </div>
   )
 }
