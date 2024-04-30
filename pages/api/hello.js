@@ -153,7 +153,6 @@ const handler = (item, onoffStatus, limitedDate) => {
     axios.post(TRADESEARCH, reqForm, {
       headers: { "Content-Type": `application/json` }
     }).then( r => {
-      console.log(r)
       resultId = r.data.id
       if (r.data.total > 0 ) {
         amount = []
@@ -164,9 +163,9 @@ const handler = (item, onoffStatus, limitedDate) => {
           axios.get(url2).then(r => {
             amount.push(r.data.result[0].listing.price.amount)
             currency.push(r.data.result[0].listing.price.currency)
-            console.log(amount, currency)
-          })}
+          })
         }
+      }
     })
 
     setTimeout(() => {

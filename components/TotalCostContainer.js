@@ -1,15 +1,14 @@
 import CostStore from "../store/CostStore";
 import BuildStore from "../store/BuildStore";
 import {useEffect, useState} from "react";
-import handler from "../pages/api/hello";
-import {log} from "next/dist/server/typescript/utils";
 
 const TotalCostContainer = () => {
     // const {
     //     totalCost,
     // } = CostStore()
 
-    const [total, setTotal] = useState({})
+    const [minTotal, setMinTotal] = useState({})
+    const [maxTotal, setMaxTotal] = useState({})
 
     const {
         Build,
@@ -25,160 +24,104 @@ const TotalCostContainer = () => {
         Jewels,
     } = BuildStore();
 
+    function countMinMaxCost(item, minCost, maxCost) {
+        let min_cost = Math.min(...item.cost)
+        let max_cost = Math.max(...item.cost)
+
+        let min_index = item.cost.indexOf(min_cost)
+        let max_index = item.cost.indexOf(max_cost)
+
+        let min_unit = item.unit[min_index]
+        let max_unit = item.unit[max_index]
+
+        if (minCost[min_unit]) {
+            minCost[min_unit] += min_cost
+        } else {
+            minCost[min_unit] = min_cost
+        }
+
+        if (maxCost[max_unit]) {
+            maxCost[max_unit] += max_cost
+        } else {
+            maxCost[max_unit] = max_cost
+        }
+    }
+
     useEffect( ()=>{
-        let temp = {}
+        let minCost = {}
+        let maxCost = {}
 
         for (const item of Helmet) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Body) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Belt) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Glove) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Boots) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Ring) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Amulet) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Weapon) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
-
+            countMinMaxCost(item, minCost, maxCost);
         }
 
         for (const item of Flasks) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
+            countMinMaxCost(item, minCost, maxCost);
         }
         for (const item of Jewels) {
-            if(item.cost == 0) {
+            if(item.cost==null||item.cost == 0) {
                 continue
             }
-            const cost = item.cost
-            const unit = item.unit
-
-            if (temp[unit]) {
-                temp[unit] += cost
-            } else {
-                temp[unit] = cost
-            }
+            countMinMaxCost(item, minCost, maxCost);
         }
 
-        setTotal(temp)
+        setMinTotal(minCost)
+        setMaxTotal(maxCost)
     }, [Helmet,
         Body,
         Belt,
@@ -193,13 +136,28 @@ const TotalCostContainer = () => {
 
     return (
         <>
-            <h1> total cost</h1>
+            <h2> total cost</h2>
+            <h2> Min Cost</h2>
             {
-                Object.keys(total).map((item, key)=> (
+                Object.keys(minTotal).map((item, key)=> (
                     <div key={key}>
                         {item != "undefined" ?
                             <div>
-                                {item} : {total[item]} <hr/>
+                                {item} : {minTotal[item]} <hr/>
+                            </div> : null
+                        }
+                    </div>
+
+                ))
+            }
+
+            <h2> Max Cost</h2>
+            {
+                Object.keys(maxTotal).map((item, key)=> (
+                    <div key={key}>
+                        {item != "undefined" ?
+                            <div>
+                                {item} : {maxTotal[item]} <hr/>
                             </div> : null
                         }
                     </div>
