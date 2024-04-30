@@ -136,34 +136,37 @@ const TotalCostContainer = () => {
 
     return (
         <>
-            <h2> total cost</h2>
-            <h2> Min Cost</h2>
-            {
-                Object.keys(minTotal).map((item, key)=> (
-                    <div key={key}>
-                        {item != "undefined" ?
-                            <div>
-                                {item} : {minTotal[item]} <hr/>
-                            </div> : null
-                        }
-                    </div>
+            <h2> Total Cost</h2>
+            <div style={{border: "solid 1px green", borderRadius: "10px"}} className={"p-3 m-3"}>
+                <h3> Min Cost</h3>
+                {
+                    Object.keys(minTotal).map((item, key)=> (
+                        <div key={key}>
+                            {item != "undefined" ?
+                                <div>
+                                    {item} : {(minTotal[item].toFixed(1))} <hr/>
+                                </div> : null
+                            }
+                        </div>
+                    ))
+                }
+            </div>
 
-                ))
-            }
+            <div style={{border: "solid 1px red", borderRadius: "10px"}} className={"p-3 m-3"}>
+                <h2> Max Cost</h2>
+                {
+                    Object.keys(maxTotal).map((item, key)=> (
+                        <div key={key}>
+                            {item != "undefined" ?
+                                <div>
+                                    {item} : {maxTotal[item].toFixed(1)} <hr/>
+                                </div> : null
+                            }
+                        </div>
 
-            <h2> Max Cost</h2>
-            {
-                Object.keys(maxTotal).map((item, key)=> (
-                    <div key={key}>
-                        {item != "undefined" ?
-                            <div>
-                                {item} : {maxTotal[item]} <hr/>
-                            </div> : null
-                        }
-                    </div>
-
-                ))
-            }
+                    ))
+                }
+            </div>
         </>
     )
 
