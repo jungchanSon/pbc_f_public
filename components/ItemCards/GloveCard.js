@@ -60,7 +60,7 @@ const GloveCard = () => {
                                 :null}
                         </Card.Body>
                         <Card.Body>
-                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>개별 검색</Button>
+                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>Individual item search</Button>
                         </Card.Body>
                         <hr/>
                         {/*optinos*/}
