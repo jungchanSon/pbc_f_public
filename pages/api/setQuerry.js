@@ -107,7 +107,6 @@ const handler = (item, onoffStatus, limitedDate) => {
       },
     })
   }
-  console.log("reqItemType", reqItemType)
   let reqForm = {
     query: {
       filters: {
@@ -147,7 +146,6 @@ const handler = (item, onoffStatus, limitedDate) => {
 
   }
 
-  console.log(reqForm)
   return tradeUrl + "?q="+ JSON.stringify(reqForm)
   // return new Promise((resolve, reject) => {
   //

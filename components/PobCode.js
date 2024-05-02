@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import {Button, Spinner} from "react-bootstrap";
+import {Button, Spinner, Toast} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import JewelStore from "../store/Jewel";
@@ -13,6 +13,7 @@ import handler from "../pages/api/setQuerry";
 
 const PobCode = () => {
     const [pobCode, setPobCode] = useState("")
+    const [show, setShow] = useState(false);
     const { Jewel, setJewel } = JewelStore();
     const [btnDisable, setBtnDisable] = useState(false)
     const {
@@ -253,6 +254,9 @@ const PobCode = () => {
                     addFlasks(item)
                 }
             })
+        }).catch(e=> {
+            setBtnDisable(false)
+            setShow(true)
         })
     }
 
@@ -262,59 +266,26 @@ const PobCode = () => {
         setPobCode(e.target.value)
     }
 
-    const testBtn = (e) => {
-        e.preventDefault()
-        Jewel.forEach( async (item) => {
-        })
-
-        const item = Jewel[0]
-
-        const url = "/api/trade/search/Standard"
-        const data = "{\n" +
-            "    \"query\": {" +
-            "        \"name\": \"The Pariah\"\n" +
-            "    }\n" +
-            "}   "
-        const d = {
-            query: {
-                name: "The Pariah"
-            }
-        }
-        axios.post(url, d, {
-            headers: { "Content-Type": `application/json`}
-        }).then( r => {
-        })
-    }
-
-    const testCost = (e) => {
-        e.preventDefault();
-
-        setJewels(10)
-        // Jewels.map((item, key) => ({...item}))
-        // Jewels.map((item, key) => {
-        //     item.cost = 10
-        //     item.unit = "Divine"
-        // })
-    }
-    async function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     return (
         <Form onKeyDown={(e)=>{
             if (e.code=="Enter") {
                 e.preventDefault()
                 if(!btnDisable){
-                    console.log(e)
                     handleSubmitPobCode(e)
                 }
             }
         }} onSubmit={handleSubmitPobCode}>
+
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" disabled={btnDisable}>
                 <Form.Label><h2>PobCode</h2></Form.Label>
+
                 <Form.Control as="textarea" rows={3} onChange={handleInputPobCode}
                               className={styles.textarea} placeholder={"Input Pob Code"}
                             />
+
+                <Toast onClose={() => setShow(false)} show={show} delay={3000} className={"m-auto my-3"} autohide>
+                    <Toast.Body>Please check if the code is correct</Toast.Body>
+                </Toast>
                 <Button type={"submit"} disabled={btnDisable}>Submit</Button>
                 {
                     btnDisable == true ?

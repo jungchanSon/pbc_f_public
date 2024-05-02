@@ -28,7 +28,6 @@ const AmuletCard = () => {
     }
     const searchOneItem = (item) => {
         let res = handler(item, OnOffCondition, DateCondition)
-        console.log(res)
         // if(res != "no data") {
         //     await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         // } else {

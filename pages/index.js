@@ -1,34 +1,9 @@
 import styles from '../styles/Home.module.css'
-import PobCode from "../components/PobCode";
-import TotalCostContainer from "../components/TotalCostContainer";
 import Head from "next/head"
 import {Badge, Button, Card, Col, Row, Spinner, Stack} from "react-bootstrap";
 import Link from "next/link";
 import Form from "react-bootstrap/Form";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
-// import {HttpsProxyAgent} from "https-proxy-agent";
-import axios from "axios";
-import * as http from "http";
-import {useEffect} from "react";
-import jsonp from "jsonp";
-import {log} from "next/dist/server/typescript/utils";
-
-function fetchJSONP(url, callback) {
-    // 콜백 함수명을 고유하게 생성
-    const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-    console.log("jsonp")
-    // 전역 객체에 콜백 함수를 등록
-    window[callbackName] = function(data) {
-        delete window[callbackName];
-        document.body.removeChild(script);
-        callback(data);
-    };
-
-    // 스크립트 태그 생성 및 속성 설정
-    const script = document.createElement('script');
-    script.src = `${url} (url에 JSONP 콜백 파라미터를 포함하여 호출) &callback=${callbackName}`;
-    document.body.appendChild(script);
-}
 
 
 
