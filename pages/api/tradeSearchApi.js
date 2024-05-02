@@ -1,4 +1,5 @@
 import axios from "axios";
+import handler from "./setQuerry";
 
 const tradeSearchApi = () => {
     const LEAGUE = "Affliction"

@@ -1,7 +1,7 @@
 import {Button, Col, Form, ProgressBar, Row, Stack} from "react-bootstrap";
 import TradeConditionStore from "../store/TradeConditionStore";
 import {LimitedDate, OnOffCond} from "../types/TradeConditionType";
-import handler from "../pages/api/hello";
+import handler from "../pages/api/setQuerry";
 import BuildStore from "../store/BuildStore";
 import {useState} from "react";
 

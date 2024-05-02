@@ -2,8 +2,11 @@ import BuildStore from "../../store/BuildStore";
 import {Badge, Button, Card, Row, Stack} from "react-bootstrap";
 import {setRarity} from "./common";
 import Link from "next/link";
-import handler from "../../pages/api/hello";
+import handler from "../../pages/api/setQuerry";
 import TradeConditionStore from "../../store/TradeConditionStore";
+import toTradePage from "../../pages/api/toTradePage";
+
+
 
 const AmuletCard = () => {
 
@@ -11,6 +14,7 @@ const AmuletCard = () => {
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
     const { setCostOfAmulet } = BuildStore()
+
     const clickOpt = (itemKey, optionKey) => {
         let temp = Amulet[itemKey].selectedOpts
         temp[optionKey] *= -1
@@ -22,16 +26,16 @@ const AmuletCard = () => {
         Amulet[itemKey].checkAllRes = !Amulet[itemKey].checkAllRes
         setAmulet(Amulet)
     }
-    const searchOneItem = async (item) => {
-        let res = await handler(item, OnOffCondition, DateCondition)
-        if(res != "no data") {
-            await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
-        } else {
-            await setCostOfAmulet({uid: item.uniqueId, cost: null, unit: null})
-        }
+    const searchOneItem = (item) => {
+        let res = handler(item, OnOffCondition, DateCondition)
+        console.log(res)
+        // if(res != "no data") {
+        //     await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        // } else {
+        //     await setCostOfAmulet({uid: item.uniqueId, cost: null, unit: null})
+        // }
 
     }
-
     if(Amulet)
     return (
         <>
@@ -51,7 +55,6 @@ const AmuletCard = () => {
                         }
                         <Card.Body>
                             <Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>
-
                             {item.hasOwnProperty("rid")?
                                 <Badge bg="secondary">
                                     <Link href={"https://www.pathofexile.com/trade/search/Necropolis/"+item.rid} target={"_blank"}>
@@ -60,9 +63,7 @@ const AmuletCard = () => {
                                 </Badge>
                                 :null}
                         </Card.Body>
-                        <Card.Body>
-                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>Individual item search</Button>
-                        </Card.Body>
+
                         <hr/>
                         {/*optinos*/}
                         <Stack gap={1} className="px-2 align-items-center mx-auto">
@@ -103,22 +104,20 @@ const AmuletCard = () => {
                         }
                         <hr/>
                         {/*cost*/}
-                        {item.cost && item.cost.length > 0 ?
-                            <Card.Body>
-                                {item.cost.map( (i, key) => (
-                                    <div key={key}>
-                                        cost {key+1} = {i} {item.unit[key]}
-                                    </div>
-                                ))}
-                            </Card.Body>
-                            :
-                            null
-                        }
-                        {/*<button onClick={handleTestApi}>test api</button>*/}
+                        {/*{item.cost && item.cost.length > 0 ?*/}
+                        {/*    <Card.Body>*/}
+                        {/*        {item.cost.map( (i, key) => (*/}
+                        {/*            <div key={key}>*/}
+                        {/*                cost {key+1} = {i} {item.unit[key]}*/}
+                        {/*            </div>*/}
+                        {/*        ))}*/}
+                        {/*    </Card.Body>*/}
+                        {/*    :*/}
+                        {/*    null*/}
+                        {/*}*/}
+                        <Button onClick={()=>toTradePage(item)} className={"my-2"} variant="outline-info">Go To Trade Page</Button>
                     </Card>
-
                 )) : null}
-
             </Row>
         </>
     )

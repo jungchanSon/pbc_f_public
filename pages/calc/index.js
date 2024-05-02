@@ -19,10 +19,10 @@ export default function Home() {
           </Head>
           <br/>
         <PobCode></PobCode>
-          <hr/>
+          {/*<hr/>*/}
         {/*<PobUrl></PobUrl>*/}
         {/*  <hr/>*/}
-        <TradeConditionContainer/>
+        {/*<TradeConditionContainer/>*/}
         <EquipContainer/>
         <TotalCostContainer/>
           {/*<JewelContainer/>*/}

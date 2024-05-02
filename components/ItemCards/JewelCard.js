@@ -4,7 +4,8 @@ import {Badge, Button, Card, CardGroup, Row, Stack} from "react-bootstrap";
 import {setRarity} from "./common"
 import Link from "next/link";
 import TradeConditionStore from "../../store/TradeConditionStore";
-import handler from "../../pages/api/hello";
+import handler from "../../pages/api/setQuerry";
+import toTradePage from "../../pages/api/toTradePage";
 
 const JewelCard = () => {
 
@@ -59,9 +60,9 @@ const JewelCard = () => {
                                 </Badge>
                                 :null}
                         </Card.Body>
-                        <Card.Body>
-                            <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>Individual item search</Button>
-                        </Card.Body>
+                        {/*<Card.Body>*/}
+                        {/*    <Button variant="outline-primary" onClick={()=> searchOneItem(item)}>Individual item search</Button>*/}
+                        {/*</Card.Body>*/}
                         <hr/>
                         {/*optinos*/}
                         <Stack gap={1} className="px-2 align-items-center mx-auto">
@@ -115,7 +116,7 @@ const JewelCard = () => {
                             :
                             null
                         }
-                        {/*<button onClick={handleTestApi}>test api</button>*/}
+                        <Button onClick={()=>toTradePage(item)} className={"my-2"} variant="outline-info">Go To Trade Page</Button>
                     </Card>
 
                 )) : null}

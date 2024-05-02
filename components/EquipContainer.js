@@ -14,7 +14,7 @@ import RingCard from "./ItemCards/RingCard";
 import AmuletCard from "./ItemCards/AmuletCard";
 import JewelCard from "./ItemCards/JewelCard";
 import FlaskCard from "./ItemCards/FlaskCard";
-import handler from "../pages/api/hello";
+import handler from "../pages/api/setQuerry";
 import CostStore from "../store/CostStore";
 import TradeConditionStore from "../store/TradeConditionStore";
 

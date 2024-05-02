@@ -9,6 +9,7 @@ import {log} from "next/dist/server/typescript/utils";
 import styles from "../styles/Home.module.css";
 import CostStore from "../store/CostStore";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import handler from "../pages/api/setQuerry";
 
 const PobCode = () => {
     const [pobCode, setPobCode] = useState("")
@@ -129,6 +130,7 @@ const PobCode = () => {
                         ))
                     }
                     addHelmet(item)
+                    // setCostOfHelmet(handler(item))
                 } else if (item.itemType === "Body") {
                     let optionById = item.optionsById;
                     if (item.allRes > 0) {
@@ -299,8 +301,16 @@ const PobCode = () => {
     }
 
     return (
-        <Form onSubmit={handleSubmitPobCode}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+        <Form onKeyDown={(e)=>{
+            if (e.code=="Enter") {
+                e.preventDefault()
+                if(!btnDisable){
+                    console.log(e)
+                    handleSubmitPobCode(e)
+                }
+            }
+        }} onSubmit={handleSubmitPobCode}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" disabled={btnDisable}>
                 <Form.Label><h2>PobCode</h2></Form.Label>
                 <Form.Control as="textarea" rows={3} onChange={handleInputPobCode}
                               className={styles.textarea} placeholder={"Input Pob Code"}

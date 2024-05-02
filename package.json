@@ -13,6 +13,7 @@
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^3.0.0",
     "https-proxy-agent": "^7.0.4",
+    "jsonp": "^0.2.1",
     "net": "^1.0.2",
     "next": "14.1.0",
     "next-http-proxy-middleware": "^1.2.6",

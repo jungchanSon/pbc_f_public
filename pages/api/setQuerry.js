@@ -4,7 +4,8 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 
 const handler = (item, onoffStatus, limitedDate) => {
   const LEAGUE = "Necropolis"
-  const tradeUrl = "/poetrade/api/trade/search/"+LEAGUE
+  // const tradeUrl = "/poetrade/api/trade/search/"+LEAGUE
+  const tradeUrl = "https://www.pathofexile.com/trade/search/"+LEAGUE
   const TRADESEARCH = process.env.NEXT_PUBLIC_TRADESEARCH
   const options = item.optionsById
   const optionValue = item.optionsByValue
@@ -106,7 +107,7 @@ const handler = (item, onoffStatus, limitedDate) => {
       },
     })
   }
-
+  console.log("reqItemType", reqItemType)
   let reqForm = {
     query: {
       filters: {
@@ -118,6 +119,7 @@ const handler = (item, onoffStatus, limitedDate) => {
           }
         }
       },
+      // type: itemType,
       stats: [{
         type: "and",
         filters: reqFilter
@@ -130,48 +132,51 @@ const handler = (item, onoffStatus, limitedDate) => {
   }
 
   //Limited Date
-  if (limitedDate != "any") {
-    reqForm.query.filters.trade_filters = {
-      filters: {
-        indexed: {
-          option: limitedDate
-        }
-      }
-    };
-  }
+  // if (limitedDate != "any") {
+  //   reqForm.query.filters.trade_filters = {
+  //     filters: {
+  //       indexed: {
+  //         option: limitedDate
+  //       }
+  //     }
+  //   };
+  // }
 
   if (rarity == "UNIQUE" || rarity == "RELIC") {
     reqForm.query.name = name
 
   }
-  return new Promise((resolve, reject) => {
 
-    let amount
-    let currency
-
-
-    axios.post(TRADESEARCH, reqForm, {
-      headers: { "Content-Type": `application/json` }
-    }).then( r => {
-      resultId = r.data.id
-      if (r.data.total > 0 ) {
-        amount = []
-        currency = []
-        for(let i=0; i<3 && i<r.data.total; i++ ) {
-          resultLine = r.data.result[i]
-          let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
-          axios.get(url2).then(r => {
-            amount.push(r.data.result[0].listing.price.amount)
-            currency.push(r.data.result[0].listing.price.currency)
-          })
-        }
-      }
-    })
-
-    setTimeout(() => {
-      resolve({amount, currency, resultId})
-    }, 1000 * 7)
-  })
+  console.log(reqForm)
+  return tradeUrl + "?q="+ JSON.stringify(reqForm)
+  // return new Promise((resolve, reject) => {
+  //
+  //   let amount
+  //   let currency
+  //
+  //
+  //   axios.post(tradeUrl, reqForm, {
+  //     headers: { "Content-Type": `application/json` }
+  //   }).then( r => {
+  //     resultId = r.data.id
+  //     if (r.data.total > 0 ) {
+  //       amount = []
+  //       currency = []
+  //       for(let i=0; i<3 && i<r.data.total; i++ ) {
+  //         resultLine = r.data.result[i]
+  //         let url2 = "/poetrade/api/trade/fetch/"+resultLine+"?query="+resultId
+  //         axios.get(url2).then(r => {
+  //           amount.push(r.data.result[0].listing.price.amount)
+  //           currency.push(r.data.result[0].listing.price.currency)
+  //         })
+  //       }
+  //     }
+  //   })
+  //
+  //   setTimeout(() => {
+  //     resolve({amount, currency, resultId})
+  //   }, 1000 * 7)
+  // })
 }
 
 export default handler;
