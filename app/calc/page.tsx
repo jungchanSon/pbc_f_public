@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 
-import AmuletCard from "/components/itemCards/AmuletCard"
-import BeltCard from "/components/itemCards/BeltCard"
-import BodyCard from "/components/itemCards/BodyCard"
-import BootsCard from "../../components/itemCards/BootsCard"
-import FlasksCard from "../../components/itemCards/FlasksCard"
-import GloveCard from "../../components/itemCards/GloveCard"
-import HelmetCard from "../../components/itemCards/HelmetCard"
-import JewelCard from "../../components/itemCards/JewelCard"
-import RingCard from "../../components/itemCards/RingCard"
-import WeaponCard from "../../components/itemCards/WeaponCard"
+import AmuletCard from "/components/AmuletCard"
+import BeltCard from "/components/BeltCard"
+import BodyCard from "/components/BodyCard"
+import BootsCard from "../../components/BootsCard"
+import FlasksCard from "../../components/FlasksCard"
+import GloveCard from "../../components/GloveCard"
+import HelmetCard from "../../components/HelmetCard"
+import JewelCard from "../../components/JewelCard"
+import RingCard from "../../components/RingCard"
+import WeaponCard from "../../components/WeaponCard"
 
 import {
     Home,
