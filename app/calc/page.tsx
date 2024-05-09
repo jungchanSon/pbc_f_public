@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import AmuletCard from "../../components/itemCards/AmuletCard"
+import AmuletCard from "@/components/itemCards/AmuletCard"
 import BeltCard from "../../components/itemCards/BeltCard"
 import BodyCard from "../../components/itemCards/BodyCard"
 import BootsCard from "../../components/itemCards/BootsCard"
