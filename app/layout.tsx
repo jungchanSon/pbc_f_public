@@ -17,9 +17,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.poebuildcost.com",
   },
-  other : {
-    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ACCOUNT,
-  },
 };
 
 export default function RootLayout({
@@ -28,10 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
+  const ADSENSE_ACCOUNT = process.env.NEXT_PUBLIC_ADSENSE_ACCOUNT
 
   return (
     <html lang="en">
       <body className={inter.className}>
+      <meta name="google-adsense-account" content={ADSENSE_ACCOUNT} />
+
       <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
