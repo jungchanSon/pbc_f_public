@@ -5,39 +5,40 @@ import {Progress} from "../ui/progress";
 import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
 import {Button} from "../ui/button";
+import handler from "@/api/setQuerry";
+import {setRarity} from "@/components/itemCards/common";
 
-const BootsCard = () => {
-    const {Body, clickHelmetOpt, setBody, setCostOfBody} = BuildStore();
+const AmuletCard = () => {
+    const {Amulet, clickHelmetOpt, setAmulet, setCostOfAmulet} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
 
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Body[itemKey].selectedOpts
+        let temp = Amulet[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Body
+        var tempH = Amulet
         tempH[itemKey].selectedOpts = temp
-        setBody(tempH)
+        setAmulet(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Body[itemKey].checkAllRes = !Body[itemKey].checkAllRes
-        setBody(Body)
+        Amulet[itemKey].checkAllRes = !Amulet[itemKey].checkAllRes
+        setAmulet(Amulet)
     }
     const searchOneItem = (item) => {
         let res = handler(item, OnOffCondition, DateCondition)
         // if(res != "no data") {
-        //     await setCostOfBody({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        //     await setCostOfAmulet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         // } else {
-        //     await setCostOfBody({uid: item.uniqueId, cost: null, unit: null})
+        //     await setCostOfAmulet({uid: item.uniqueId, cost: null, unit: null})
         // }
 
     }
-    if(Body)
+    if(Amulet)
     return (
         <>
-            {Body ? Body.map((item, itemKey) => (
+            {Amulet ? Amulet.map((item, itemKey) => (
                 <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
                     <CardHeader className="pb-2">
-                        {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
                         {
                             item.hasOwnProperty("unit") && item.unit != "" ?
                                 (item.cost != null
@@ -48,8 +49,8 @@ const BootsCard = () => {
                                 :
                                 null
                         }
-                        <CardDescription>Body</CardDescription>
-                        <CardTitle className="text-xl">{item.name}</CardTitle>
+                        <CardDescription>Amulet</CardDescription>
+                        <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {item ? item.options.map((opt, optionKey) => (
@@ -93,4 +94,4 @@ const BootsCard = () => {
     )
 }
 
-export default BootsCard
+export default AmuletCard

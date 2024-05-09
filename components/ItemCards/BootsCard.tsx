@@ -1,41 +1,42 @@
 import BuildStore from "../../store/BuildStore";
 import TradeConditionStore from "../../store/TradeConditionStore";
-import handler from "../../../pbc_f_public_v2/api/setQuerry";
-import toTradePage from "../../../pbc_f_public_v2/api/toTradePage";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
-import {Button} from "../ui/button";
+import {Progress} from "../ui/progress";
+import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
+import {Button} from "../ui/button";
+import {setRarity} from "@/components/itemCards/common";
+import handler from "@/api/setQuerry";
 
-
-const GloveCard = () => {
-
-    const {Glove, clickGloveOpt, setGlove} = BuildStore();
+const BootsCard = () => {
+    const {Body, clickHelmetOpt, setBody, setCostOfBody} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
-    const {setCostOfGlove} = BuildStore()
+
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Glove[itemKey].selectedOpts
+        let temp = Body[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Glove
+        var tempH = Body
         tempH[itemKey].selectedOpts = temp
-        setGlove(tempH)
+        setBody(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Glove[itemKey].checkAllRes = !Glove[itemKey].checkAllRes
-        setGlove(Glove)
+        Body[itemKey].checkAllRes = !Body[itemKey].checkAllRes
+        setBody(Body)
     }
-    const searchOneItem = async (item) => {
+    const searchOneItem = (item) => {
         let res = handler(item, OnOffCondition, DateCondition)
-        if(res != "no data") {
-            await setCostOfGlove({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
-        } else {
-            await setCostOfGlove({uid: item.uniqueId, cost: null, unit: null})
-        }
+        // if(res != "no data") {
+        //     await setCostOfBody({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        // } else {
+        //     await setCostOfBody({uid: item.uniqueId, cost: null, unit: null})
+        // }
+
     }
-    if(Glove)
+    if(Body)
     return (
         <>
-            {Glove ? Glove.map((item, itemKey) => (
+            {Body ? Body.map((item, itemKey) => (
                 <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
                     <CardHeader className="pb-2">
                         {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
@@ -49,8 +50,8 @@ const GloveCard = () => {
                                 :
                                 null
                         }
-                        <CardDescription>Glove</CardDescription>
-                        <CardTitle className="text-xl">{item.name}</CardTitle>
+                        <CardDescription>Body</CardDescription>
+                        <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {item ? item.options.map((opt, optionKey) => (
@@ -94,4 +95,4 @@ const GloveCard = () => {
     )
 }
 
-export default GloveCard
+export default BootsCard

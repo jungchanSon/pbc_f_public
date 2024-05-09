@@ -5,36 +5,37 @@ import {Progress} from "../ui/progress";
 import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
 import {Button} from "../ui/button";
+import {setRarity} from "@/components/itemCards/common";
 
-const WeaponCard = () => {
-    const {Weapon, clickWeaponOpt, setWeapon, setCostOfWeapon} = BuildStore();
+const HelmetCard = () => {
+    const {Helmet, clickHelmetOpt, setHelmet, setCostOfHelmet} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
 
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Weapon[itemKey].selectedOpts
+        let temp = Helmet[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Weapon
+        var tempH = Helmet
         tempH[itemKey].selectedOpts = temp
-        setWeapon(tempH)
+        setHelmet(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Weapon[itemKey].checkAllRes = !Weapon[itemKey].checkAllRes
-        setWeapon(Weapon)
+        Helmet[itemKey].checkAllRes = !Helmet[itemKey].checkAllRes
+        setHelmet(Helmet)
     }
     const searchOneItem = (item) => {
-        let res = handler(item, OnOffCondition, DateCondition)
+        // let res = handler(item, OnOffCondition, DateCondition)
         // if(res != "no data") {
-        //     await setCostOfWeapon({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        //     await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         // } else {
-        //     await setCostOfWeapon({uid: item.uniqueId, cost: null, unit: null})
+        //     await setCostOfHelmet({uid: item.uniqueId, cost: null, unit: null})
         // }
 
     }
-    if(Weapon)
+    if(Helmet)
         return (
             <>
-                {Weapon ? Weapon.map((item, itemKey) => (
+                {Helmet ? Helmet.map((item, itemKey) => (
                     <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
                         <CardHeader className="pb-2">
                             {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
@@ -48,8 +49,8 @@ const WeaponCard = () => {
                                     :
                                     null
                             }
-                            <CardDescription>Weapon</CardDescription>
-                            <CardTitle className="text-xl">{item.name}</CardTitle>
+                            <CardDescription>Helmet</CardDescription>
+                            <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             {item ? item.options.map((opt, optionKey) => (
@@ -93,4 +94,4 @@ const WeaponCard = () => {
         )
 }
 
-export default WeaponCard
+export default HelmetCard

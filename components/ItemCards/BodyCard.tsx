@@ -5,6 +5,8 @@ import {Progress} from "../ui/progress";
 import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
 import {Button} from "../ui/button";
+import {setRarity} from "@/components/itemCards/common";
+import handler from "@/api/setQuerry";
 
 const BodyCard = () => {
     const {Body, clickHelmetOpt, setBody, setCostOfBody} = BuildStore();
@@ -49,7 +51,7 @@ const BodyCard = () => {
                                     null
                             }
                             <CardDescription>Body</CardDescription>
-                            <CardTitle className="text-xl">{item.name}</CardTitle>
+                            <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             {item ? item.options.map((opt, optionKey) => (

@@ -5,36 +5,38 @@ import {Progress} from "../ui/progress";
 import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
 import {Button} from "../ui/button";
+import {setRarity} from "@/components/itemCards/common";
+import handler from "@/api/setQuerry";
 
-const HelmetCard = () => {
-    const {Helmet, clickHelmetOpt, setHelmet, setCostOfHelmet} = BuildStore();
+const JewelCard = () => {
+    const {Jewels, clickJewelOpt, setJewels, setCostOfJewel} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
 
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Helmet[itemKey].selectedOpts
+        let temp = Jewels[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Helmet
+        var tempH = Jewels
         tempH[itemKey].selectedOpts = temp
-        setHelmet(tempH)
+        setJewels(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Helmet[itemKey].checkAllRes = !Helmet[itemKey].checkAllRes
-        setHelmet(Helmet)
+        Jewels[itemKey].checkAllRes = !Jewels[itemKey].checkAllRes
+        setJewels(Jewels)
     }
     const searchOneItem = (item) => {
-        let res = handler(item, OnOffCondition, DateCondition)
+        // let res = handler(item, OnOffCondition, DateCondition)
         // if(res != "no data") {
-        //     await setCostOfHelmet({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        //     await setCostOfJewel({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         // } else {
-        //     await setCostOfHelmet({uid: item.uniqueId, cost: null, unit: null})
+        //     await setCostOfJewel({uid: item.uniqueId, cost: null, unit: null})
         // }
 
     }
-    if(Helmet)
+    if(Jewels)
         return (
             <>
-                {Helmet ? Helmet.map((item, itemKey) => (
+                {Jewels ? Jewels.map((item, itemKey) => (
                     <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
                         <CardHeader className="pb-2">
                             {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
@@ -48,8 +50,8 @@ const HelmetCard = () => {
                                     :
                                     null
                             }
-                            <CardDescription>Helmet</CardDescription>
-                            <CardTitle className="text-xl">{item.name}</CardTitle>
+                            <CardDescription>Jewel</CardDescription>
+                            <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             {item ? item.options.map((opt, optionKey) => (
@@ -93,4 +95,4 @@ const HelmetCard = () => {
         )
 }
 
-export default HelmetCard
+export default JewelCard

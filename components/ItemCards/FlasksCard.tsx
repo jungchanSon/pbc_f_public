@@ -2,39 +2,41 @@ import BuildStore from "../../store/BuildStore";
 import TradeConditionStore from "../../store/TradeConditionStore";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
 import {Progress} from "../ui/progress";
+import {setRarity} from "./common";
 import toTradePage from "../../api/toTradePage";
 import {Badge} from "../ui/badge";
 import {Button} from "../ui/button";
+import handler from "@/api/setQuerry";
 
-const JewelCard = () => {
-    const {Jewels, clickJewelOpt, ㅑsetJewels, setCostOfJewel} = BuildStore();
+const FlasksCard = () => {
+    const {Flasks, clickHelmetOpt, setFlasks, setCostOfFlasks} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
 
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Jewels[itemKey].selectedOpts
+        let temp = Flasks[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Jewels
+        var tempH = Flasks
         tempH[itemKey].selectedOpts = temp
-        setJewels(tempH)
+        setFlasks(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Jewels[itemKey].checkAllRes = !Jewels[itemKey].checkAllRes
-        setJewels(Jewels)
+        Flasks[itemKey].checkAllRes = !Flasks[itemKey].checkAllRes
+        setFlasks(Flasks)
     }
     const searchOneItem = (item) => {
         let res = handler(item, OnOffCondition, DateCondition)
         // if(res != "no data") {
-        //     await setCostOfJewel({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        //     await setCostOfFlasks({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         // } else {
-        //     await setCostOfJewel({uid: item.uniqueId, cost: null, unit: null})
+        //     await setCostOfFlasks({uid: item.uniqueId, cost: null, unit: null})
         // }
 
     }
-    if(Jewels)
+    if(Flasks)
         return (
             <>
-                {Jewels ? Jewels.map((item, itemKey) => (
+                {Flasks ? Flasks.map((item, itemKey) => (
                     <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
                         <CardHeader className="pb-2">
                             {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
@@ -48,8 +50,8 @@ const JewelCard = () => {
                                     :
                                     null
                             }
-                            <CardDescription>Jewel</CardDescription>
-                            <CardTitle className="text-xl">{item.name}</CardTitle>
+                            <CardDescription>Flasks</CardDescription>
+                            <CardTitle className={"text-xl "+setRarity(item.rarity)}>{item.name}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             {item ? item.options.map((opt, optionKey) => (
@@ -93,4 +95,4 @@ const JewelCard = () => {
         )
 }
 
-export default JewelCard
+export default FlasksCard
