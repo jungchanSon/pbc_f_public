@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 
-import AmuletCard from "/components/AmuletCard"
-import BeltCard from "/components/BeltCard"
-import BodyCard from "/components/BodyCard"
+import AmuletCard from "../../components/AmuletCard"
+import BeltCard from "../../components/BeltCard"
+import BodyCard from "../../components/BodyCard"
 import BootsCard from "../../components/BootsCard"
 import FlasksCard from "../../components/FlasksCard"
 import GloveCard from "../../components/GloveCard"
