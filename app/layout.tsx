@@ -16,8 +16,6 @@ export const metadata: Metadata = {
     title: "Poe Build Cost",
     type: "website",
     url: "https://www.poebuildcost.com",
-    authors: "PoeBuildCost",
-    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ACCOUNT,
   },
   other : {
     "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ACCOUNT,
