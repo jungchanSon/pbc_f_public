@@ -1,5 +1,14 @@
 import { create } from 'zustand';
-import {LimitedDate, OnOffCond} from "../types/TradeConditionType";
+const LimitedDate = {
+    ANY: 'any',
+    WEEK2: "2weeks",
+    MONTH: "1month",
+}
+
+const OnOffCond = {
+    ANY: "any",
+    ONLINE: "online",
+}
 
 const TradeConditionStore = create((set) => ({
     DateCondition: LimitedDate.ANY,

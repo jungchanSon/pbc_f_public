@@ -1,123 +1,94 @@
 import BuildStore from "../../store/BuildStore";
-import {Badge, Button, Card, Row, Stack} from "react-bootstrap";
-import {setRarity} from "./common";
-import Link from "next/link";
 import TradeConditionStore from "../../store/TradeConditionStore";
-import handler from "../../pages/api/setQuerry";
-import toTradePage from "../../pages/api/toTradePage";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
+import {Progress} from "../ui/progress";
+import toTradePage from "../../api/toTradePage";
+import {Badge} from "../ui/badge";
+import {Button} from "../ui/button";
 
 const BootsCard = () => {
-
-    const {Boots, clickBootsOpt, setBoots} = BuildStore();
+    const {Body, clickHelmetOpt, setBody, setCostOfBody} = BuildStore();
     const {OnOffCondition, DateCondition, } = TradeConditionStore()
     const {setOnOffCondition, setDateCondition} = TradeConditionStore()
-    const {setCostOfBoots } = BuildStore()
+
     const clickOpt = (itemKey, optionKey) => {
-        let temp = Boots[itemKey].selectedOpts
+        let temp = Body[itemKey].selectedOpts
         temp[optionKey] *= -1
-        var tempH = Boots
+        var tempH = Body
         tempH[itemKey].selectedOpts = temp
-        setBoots(tempH)
+        setBody(tempH)
     }
     const clickOpt2 = (itemKey) => {
-        Boots[itemKey].checkAllRes = !Boots[itemKey].checkAllRes
-        setBoots(Boots)
+        Body[itemKey].checkAllRes = !Body[itemKey].checkAllRes
+        setBody(Body)
     }
-    const searchOneItem = async (item) => {
-        let res = await handler(item, OnOffCondition, DateCondition)
-        if(res != "no data") {
-            await setCostOfBoots({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
-        } else {
-            await setCostOfBoots({uid: item.uniqueId, cost: null, unit: null})
-        }
+    const searchOneItem = (item) => {
+        let res = handler(item, OnOffCondition, DateCondition)
+        // if(res != "no data") {
+        //     await setCostOfBody({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
+        // } else {
+        //     await setCostOfBody({uid: item.uniqueId, cost: null, unit: null})
+        // }
+
     }
-    if(Boots)
+    if(Body)
     return (
         <>
-            <Row xs={1} md={3} lg={5} className="g-4  justify-content-center">
-                {Boots ? Boots.map((item, itemKey) => (
-                    <Card key={itemKey} border="primary" bg="dark" text="white" style={{width: '18rem'}}>
-                        {/*name*/}
+            {Body ? Body.map((item, itemKey) => (
+                <Card key={itemKey} x-chunk="dashboard-05-chunk-2">
+                    <CardHeader className="pb-2">
+                        {/*<Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>*/}
                         {
                             item.hasOwnProperty("unit") && item.unit != "" ?
                                 (item.cost != null
                                     ?
-                                    <Badge bg="success" className={"px-4"}>Success</Badge>
+                                    <Badge className={"px-4"}>Success</Badge>
                                     :
-                                    <Badge bg="danger" className={"px-4"}>Fail</Badge>)
+                                    <Badge variant="destructive" className={"px-4"}>Fail</Badge>)
                                 :
                                 null
                         }
-                        <Card.Body>
-                            <Card.Title className={setRarity(item.rarity)}> {item.name}</Card.Title>
-
-                            {item.hasOwnProperty("rid")?
-                                <Badge bg="secondary">
-                                    <Link href={"https://www.pathofexile.com/trade/search/Necropolis/"+item.rid} target={"_blank"}>
-                                        trade
-                                    </Link>
-                                </Badge>
-                                :null}
-                        </Card.Body>
-
-                        <hr/>
-                        {/*optinos*/}
-                        <Stack gap={1} className="px-2 align-items-center mx-auto">
-                            {item ? item.options.map((opt, optionKey) => (
-                                item.selectedOpts[optionKey] === 1 ?
-                                    <div key = {optionKey}>
+                        <CardDescription>Body</CardDescription>
+                        <CardTitle className="text-xl">{item.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        {item ? item.options.map((opt, optionKey) => (
+                            item.selectedOpts[optionKey] === 1 ?
+                                <div className="text-m text-muted-foreground my-2" key = {optionKey} onClick={() => clickOpt(itemKey, optionKey)}>
+                                    {(item.implicits == optionKey) ? <hr/> : null}  <Badge>checked</Badge>
+                                    {opt}
+                                </div> :
+                                item.selectedOpts[optionKey] === 0 ?
+                                    <div className="text-m text-muted-foreground my-2 " key={optionKey} onClick={() => clickOpt(itemKey, optionKey)}>
                                         {(item.implicits == optionKey) ? <hr/> : null}
-                                        <span className={"bg-success"} onClick={() => clickOpt(itemKey, optionKey)}>{opt}</span>
+                                        <Badge variant="secondary">cant check</Badge>
+                                        {opt}
                                     </div> :
-                                    item.selectedOpts[optionKey] === 0 ?
-                                        <div key={optionKey}>
-                                            {(item.implicits == optionKey) ? <hr/> : null}
-                                            <span className={"bg-secondary"} onClick={() => clickOpt(itemKey, optionKey)}>{opt}</span>
-                                        </div> :
-                                        <div key = {optionKey}>
-                                            {(item.implicits == optionKey) ? <hr/> : null}
-                                            <span onClick={() => clickOpt(itemKey, optionKey)}>{opt}</span>
-                                        </div>
-                            )):null}
-                        </Stack>
-                        {
-                            item.allRes > 0 ?
-
-                                item.checkAllRes ?
-                                <Stack gap={1} className="px-2 align-items-center mx-auto" onClick={() => clickOpt2(itemKey)}>
-                                    <hr/>
-                                    <span className={"px-2 align-content-center mx-auto bg-info"}>
-                                        All Resistance : {item.allRes}
-                                    </span>
-                                </Stack>
-                                :
-                                <Stack gap={1} className="px-2 align-items-center mx-auto" onClick={() => clickOpt2(itemKey)}>
-                                    <hr/>
-                                    <span className={"px-2 align-content-center mx-auto bg-danger"}>
-                                    All Resistance : {item.allRes}
-                                    </span>
-                                </Stack>
-                            : null
-                        }
-                        <hr/>
-                        {/*cost*/}
+                                    <div className="text-m text-muted-foreground my-2" key = {optionKey} onClick={() => clickOpt(itemKey, optionKey)}>
+                                        {(item.implicits == optionKey) ? <hr/> : null}
+                                        {opt}
+                                    </div>
+                        )):null}
+                    </CardContent>
+                    <CardContent>
+                        <Button onClick={()=>toTradePage(item)} >Go To Trade Page</Button>
+                    </CardContent>
+                    <CardFooter>
                         {item.cost && item.cost.length > 0 ?
-                            <Card.Body>
+                            <div>
                                 {item.cost.map( (i, key) => (
                                     <div key={key}>
                                         cost {key+1} = {i} {item.unit[key]}
                                     </div>
                                 ))}
-                            </Card.Body>
+                                <br/>
+                            </div>
                             :
                             null
                         }
-                        <Button onClick={()=>toTradePage(item)} className={"my-2"} variant="outline-info">Go To Trade Page</Button>
-                    </Card>
-
-                )) : null}
-
-            </Row>
+                    </CardFooter>
+                </Card>
+            )): null}
         </>
     )
 }
