@@ -1,11 +1,11 @@
 import BuildStore from "../../store/BuildStore";
-import {Badge, Button, Card, Form, Row, Stack} from "react-Glovetrap";
-import {setRarity} from "./common";
-import Link from "next/link";
 import TradeConditionStore from "../../store/TradeConditionStore";
 import handler from "../../../pbc_f_public_v2/api/setQuerry";
 import toTradePage from "../../../pbc_f_public_v2/api/toTradePage";
-import {CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
+import {Button} from "../ui/button";
+import {Badge} from "../ui/badge";
+
 
 const GloveCard = () => {
 
@@ -25,7 +25,7 @@ const GloveCard = () => {
         setGlove(Glove)
     }
     const searchOneItem = async (item) => {
-        let res = await handler(item, OnOffCondition, DateCondition)
+        let res = handler(item, OnOffCondition, DateCondition)
         if(res != "no data") {
             await setCostOfGlove({uid: item.uniqueId, cost: res.amount, unit: res.currency, rid: res.resultId})
         } else {

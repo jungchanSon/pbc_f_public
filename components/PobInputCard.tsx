@@ -4,7 +4,6 @@ import {Button} from "./ui/button";
 import { Loader2 } from "lucide-react"
 import {Input} from "./ui/input";
 import axios from "axios";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useState} from "react";
 import JewelStore from "../store/JewelStore";
 import BuildStore from "../store/BuildStore";
@@ -31,7 +30,7 @@ const PobInputCard = () => {
 
     const url = process.env.NEXT_PUBLIC_POBCODE_REQ_URL
 
-    const pobCodeSubmit = (e) => {
+    const pobCodeSubmit = (e: any) => {
         e.preventDefault()
         setBtnDisable(true)
         const pobCode = e.target[0].value
@@ -51,7 +50,7 @@ const PobInputCard = () => {
             setBuild(response.data)
             removeAll()
 
-            response.data.map((responseItem, key) => {
+            response.data.map((responseItem:any, key:any) => {
                 let item = {...responseItem, cost: 0, unit: "" }
                 let optionById = item.optionsById;
 

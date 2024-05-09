@@ -1,0 +1,30 @@
+
+.normal {
+    color: #e8e8e8ff;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.magic {
+    color: #8c8eedff;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.rare {
+    color: #f7f772ff;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.unique{
+    color: #9e5719ff;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.relic {
+    color: #a7560b;
+    font-size: 1.5em;
+    font-weight: bolder;
+}

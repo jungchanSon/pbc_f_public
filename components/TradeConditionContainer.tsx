@@ -24,7 +24,7 @@ const OnOffCond = {
     ONLINE: "online",
 }
 
-const TradeConditionContainer = ({ option }) => {
+const TradeConditionContainer = () => {
     const [progress, setProgress] = useState(0);
     const [progressLabel, setProgressLabel] = useState("");
     const [stopCalc, setStopCalc] = useState(false);
@@ -72,7 +72,6 @@ const TradeConditionContainer = ({ option }) => {
         });
         document.addEventListener("price", function(event) {
             console.log("ItemQueryResult", event)
-            console.log("event.detail", event.detail)
 
         })
         document.dispatchEvent(new CustomEvent("hello", {
@@ -82,7 +81,6 @@ const TradeConditionContainer = ({ option }) => {
     const setItemEventListener = (itemType) => {
         document.addEventListener(itemType.toUpperCase(), function(event) {
             console.log("ItemQueryResult", event)
-            console.log("event.detail", event.detail)
         })
     }
     function delay(ms = 1000) {

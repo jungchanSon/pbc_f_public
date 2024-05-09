@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 
-import AmuletCard from "/components/itemCards/AmuletCard"
-import BeltCard from "/components/itemCards/BeltCard"
-import BodyCard from "/components/itemCards/BodyCard"
-import BootsCard from "/components/itemCards/BootsCard"
-import FlasksCard from "/components/itemCards/FlasksCard"
-import GloveCard from "/components/itemCards/GloveCard"
-import HelmetCard from "/components/itemCards/HelmetCard"
-import JewelCard from "/components/itemCards/JewelCard"
-import RingCard from "/components/itemCards/RingCard"
-import WeaponCard from "/components/itemCards/WeaponCard"
+import AmuletCard from "../../components/itemCards/AmuletCard"
+import BeltCard from "../../components/itemCards/BeltCard"
+import BodyCard from "../../components/itemCards/BodyCard"
+import BootsCard from "../../components/itemCards/BootsCard"
+import FlasksCard from "../../components/itemCards/FlasksCard"
+import GloveCard from "../../components/itemCards/GloveCard"
+import HelmetCard from "../../components/itemCards/HelmetCard"
+import JewelCard from "../../components/itemCards/JewelCard"
+import RingCard from "../../components/itemCards/RingCard"
+import WeaponCard from "../../components/itemCards/WeaponCard"
 
 import {
     Home,
@@ -24,18 +24,8 @@ import {
 } from "lucide-react"
 
 
-import { Button } from "/components/ui/button"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "/components/ui/card"
-
-import { Progress } from "/components/ui/progress"
-import { Sheet, SheetContent, SheetTrigger } from "/components/ui/sheet"
+import { Button } from "../../components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "../../components/ui/sheet"
 import PobInputCard from "../../components/PobInputCard";
 import SumaryCard from "../../components/SumaryCard";
 import TotalCostCard from "../../components/TotalCostCard";
@@ -110,51 +100,45 @@ export default function Dashboard() {
                         <PobInputCard />
                         <TradeConditionContainer/>
                         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-3">
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-3 ">
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
                                 Helmet
                             </h2>
                             <div className="grid grid-cols-subgrid gap-4 col-span-3">
                                 <HelmetCard/>
                             </div>
                             {/* Weapon Body SubWeapon*/}
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                                Weapon
-                            </h2>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                                body
-                            </h2>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                                Sub
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
+                                Weapons, Body
                             </h2>
                                 <WeaponCard/>
                                 <BodyCard/>
                             {/* Belt */}
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-3 ">
-                                Belt
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
+                                Glove, Belt, Boots
                             </h2>
-                            <div className="grid grid-cols-subgrid gap-4 col-span-3">
+                            <div className="grid grid-cols-subgrid gap-4 col-span-1">
+                                <GloveCard/>
+                            </div>
+                            <div className="grid grid-cols-subgrid gap-4 col-span-1">
                                 <BeltCard/>
                             </div>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 ">
-                                Ring 1
-                            </h2>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                                Ring 2
-                            </h2>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                                Amulet
+                            <div className="grid grid-cols-subgrid gap-4 col-span-1">
+                                <BootsCard/>
+                            </div>
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
+                                Accessories
                             </h2>
                             {/* Rings Amulet */}
                             <AmuletCard/>
                             <RingCard/>
                             {/* Jewels */}
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-3 ">
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
                                 Jewels
                             </h2>
                             <div className="grid grid-cols-subgrid gap-4 col-span-3">
                             <JewelCard/>
                             </div>
-                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-3 ">
+                            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 col-span-full ">
                                 Flasks
                             </h2>
                             <FlasksCard/>

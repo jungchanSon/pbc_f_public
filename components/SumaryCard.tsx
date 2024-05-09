@@ -34,7 +34,7 @@ const SumaryCard = () => {
     } = BuildStore();
 
     const itemSet = new Set()
-    const [itemList, setItemList] = useState([])
+    const [itemList, setItemList] = useState<any>([])
     useEffect( ()=>{
         for (const item of Helmet) {
             if(item.cost==null||item.cost == 0) {
@@ -45,6 +45,7 @@ const SumaryCard = () => {
             }
             
             itemSet.add(item)
+
             setItemList([...itemSet])
             
         }
