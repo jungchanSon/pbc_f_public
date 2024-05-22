@@ -105,8 +105,8 @@ const TradeConditionContainer = () => {
                 console.log("ItemQueryResult", event)
                 console.log("event.detail", event.detail)
                 if (event.detail && event.detail.length > 0) {
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -141,8 +141,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -177,8 +177,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -212,8 +212,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -247,8 +247,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -283,8 +283,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -319,8 +319,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -355,8 +355,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -392,8 +392,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
@@ -428,8 +428,8 @@ const TradeConditionContainer = () => {
                 if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = []
-                    let currency = []
+                    let amount : string[] = []
+                    let currency : string[]= []
                     let cnt = 0
                     for (let d of event.detail[1]){
                         if (cnt++ >= 3) break
