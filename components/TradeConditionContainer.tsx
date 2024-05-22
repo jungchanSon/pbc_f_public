@@ -510,8 +510,21 @@ const TradeConditionContainer = () => {
                                 </div>
                             </RadioGroup>
                             {
-                                canCalc?
-                                    <Button>search from poe trade</Button>:
+                                canCalc ?
+                                    hide ?
+                                        <Button>
+                                            <a
+                                                href="https://chromewebstore.google.com/detail/poe-build-cost/lljfbfepeepbmkgjalhcocfbobkaojof?hl=ko&authuser=0"
+                                                className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                please, install chrome extension to search prices
+                                            </a>
+                                        </Button>
+                                        :
+                                    <Button>search from poe trade</Button>
+                                    :
                                     <Button disabled>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                         Please wait
