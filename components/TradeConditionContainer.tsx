@@ -104,9 +104,15 @@ const TradeConditionContainer = () => {
             const tempFn = (event) => {
                 console.log("ItemQueryResult", event)
                 console.log("event.detail", event.detail)
-                if (event.detail.length > 0) {
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                if (event.detail && event.detail.length > 0) {
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfHelmet({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -132,11 +138,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfBody({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -162,11 +174,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfBelt({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -191,11 +209,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfGlove({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -220,11 +244,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfBoots({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -250,11 +280,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfWeapon({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -280,11 +316,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfRing({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -310,11 +352,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfAmulet({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -341,11 +389,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfJewels({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
@@ -371,11 +425,17 @@ const TradeConditionContainer = () => {
             }));
 
             const tempFn = (event) => {
-                if (event.detail.length > 0) {
+                if (event.detail && event.detail.length > 0) {
                     console.log("ItemQueryResult", event)
                     console.log("event.detail", event.detail)
-                    let amount = [event.detail[1][0].amount, event.detail[1][1].amount, event.detail[1][2].amount ]
-                    let currency = [event.detail[1][0].currency, event.detail[1][1].currency, event.detail[1][2].currency]
+                    let amount = []
+                    let currency = []
+                    let cnt = 0
+                    for (let d of event.detail[1]){
+                        if (cnt++ >= 3) break
+                        amount.push(d.amount)
+                        currency.push(d.currency)
+                    }
                     let rid = event.detail[0]
                     setCostOfFlasks({uid: item.uniqueId, cost: amount, unit: currency, rid: rid})
                     console.log(Helmet, amount, currency, rid)
